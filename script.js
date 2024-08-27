@@ -83,6 +83,20 @@ inputTags.addEventListener('keypress', async (evento) => {
 
 const botaoPublicar = document.querySelector('.botao-publicar');
 
+async function publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjeto) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const deuCerto = Math.random() > 0.5;
+
+            if (deuCerto) {
+                resolve('Projeto publicado com sucesso!')
+            } else {
+                reject('Erro ao publicar o projeto.')
+            }
+        }, 2000)
+    })
+}
+
 botaoPublicar.addEventListener('click', async (evento) => {
     evento.preventDefault(); //utilizado para não atualizar a pagina ao ocorrer o evento de click;
 
@@ -90,7 +104,31 @@ botaoPublicar.addEventListener('click', async (evento) => {
     const descricaoDoProjeto = document.getElementById('descricao').value;
     const tagsProjeto = Array.from(listaTags.querySelectorAll('p')).map((tag) => tag.textContent);
 
+    /*
     console.log(nomeDoProjeto);
     console.log(descricaoDoProjeto);
     console.log(tagsProjeto);
+    */
+
+    try {
+        const resultado = await publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjeto);
+        console.log(resultado);
+        alert('Deu tudo certo!')
+    } catch (error) {
+        console.log('Deu errado: ', error)
+        alert('Deu tudo errado!')
+    }
+})
+
+const botaoDescartar = document.querySelector('.botao-descartar');
+
+botaoDescartar.addEventListener('click', (evento) => {
+    evento.preventDefault();
+
+    const formulario = document.querySelector('form');
+    formulario.reset();
+
+    imagemPrincipal.src = "./img/imagem1.png";
+    nomeDaImagem.textContent = "image_projeto.png";
+    listaTags.innerHTML = "";
 })
