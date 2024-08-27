@@ -80,3 +80,17 @@ inputTags.addEventListener('keypress', async (evento) => {
         }
     }
 })
+
+const botaoPublicar = document.querySelector('.botao-publicar');
+
+botaoPublicar.addEventListener('click', async (evento) => {
+    evento.preventDefault(); //utilizado para não atualizar a pagina ao ocorrer o evento de click;
+
+    const nomeDoProjeto = document.getElementById('nome').value;
+    const descricaoDoProjeto = document.getElementById('descricao').value;
+    const tagsProjeto = Array.from(listaTags.querySelectorAll('p')).map((tag) => tag.textContent);
+
+    console.log(nomeDoProjeto);
+    console.log(descricaoDoProjeto);
+    console.log(tagsProjeto);
+})
